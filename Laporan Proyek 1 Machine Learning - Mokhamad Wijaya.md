@@ -70,7 +70,7 @@ Terdapat beberapa tahapan dalam memahami dataset tersebut, yaitu:
 
     Berikut adalah hasil pengecekan duplikasi
 
-    >>> jumlah baris duplikasi:  0
+    > jumlah baris duplikasi:  0
 
     Setelah pengecekan, tidak ditemukan duplikasi data sehingga data masih berjumlah 545.
 
@@ -92,15 +92,15 @@ Terdapat beberapa tahapan dalam memahami dataset tersebut, yaitu:
 
     Untuk evaluasi skor korelasi antar fitur khususnya fitur numerik, peneliti menggunakan fungsi `corr()` lalu skor yang didapat akan ditampilkan dalam diagram heatmap agar mudah dibaca.
     
-    ![Screenshot_20230611_231927](https://github.com/fiqihalfito/ML-Diabetes/assets/112739333/a27338eb-6a61-4993-850a-7dbebe00e9f0)
+    ![correlations_matrix_before.png](https://github.com/Oskop/ML-House-Price-Prediction/blob/0b5703836f30fcdc50be245a1f88ea350e44cf39/correlations_matrix_before.png)
     
     Gambar 1. Matriks korelasi pada fitur numerik
 
-    Dikarenakan tidak semua fitur berupa numerik, penulis melakukan standardidasi pada fitur-fitur kategorial dan didapat diagram heatmap untuk semua fitur.
+    Dikarenakan tidak semua fitur berupa numerik, penulis melakukan data encoding pada fitur-fitur kategorial dan didapat diagram heatmap untuk semua fitur.
 
-    ![Screenshot_20230611_231927](https://github.com/fiqihalfito/ML-Diabetes/assets/112739333/a27338eb-6a61-4993-850a-7dbebe00e9f0)
+    ![correlations_matrix_setelah.png](https://github.com/Oskop/ML-House-Price-Prediction/blob/0b5703836f30fcdc50be245a1f88ea350e44cf39/correlations_matrix_setelah.png)
     
-    Gambar 2. Matriks korelasi pada fitur numerik
+    Gambar 2. Matriks korelasi pada fitur numerik (semua fitur)
 
     Berdasarkan gambar 2 di atas, dari hasil analisis, fitur ``hotwaterheating``, ``guestroom``, dan ``basement`` memiliki korelasi paling kecil karena skornya mendekati angka 0. Koefisien korelasi berkisar antara -1 dan +1. Ia mengukur kekuatan hubungan antara dua variabel serta arahnya (positif atau negatif). Mengenai kekuatan hubungan antar variabel, semakin dekat nilainya ke 1 atau -1, korelasinya semakin kuat. Sedangkan, semakin dekat nilainya ke 0, korelasinya semakin lemah. Selanjutnya fitur fitur ``hotwaterheating``, ``guestroom``, dan ``basement`` di-*drop*. Maka sekarang fitur yang tersisa adalah `price`, `area`, `bedrooms`, `bathrooms`, `stories`, `mainroad`, `airconditioning`, `parking`, `prefarea` dan `furnishingstatus`. 
 
@@ -241,7 +241,7 @@ Untuk menghitung nilai eror, langkah pertama adalah membandingkan setiap prediks
 
 Berikut rumus matematika untuk menghitung akurasi:
 
-![Screenshot_20230611_231927](https://github.com/fiqihalfito/ML-Diabetes/assets/112739333/a27338eb-6a61-4993-850a-7dbebe00e9f0)
+![rumus_mean_squared_error_mse.jpeg](https://github.com/Oskop/ML-House-Price-Prediction/blob/0b5703836f30fcdc50be245a1f88ea350e44cf39/rumus_mean_squared_error_mse.jpeg)
     
 Gambar 3. Rumus Mean Squared Error
 
@@ -257,7 +257,7 @@ Pada proyek ini, nilai eror dari setiap model akan digunakan untuk membandingkan
 
 Hasil dari evaluasi model menggunakan metrik error sebagai berikut:
 
-![Screenshot_20230611_231927](https://github.com/fiqihalfito/ML-Diabetes/assets/112739333/a27338eb-6a61-4993-850a-7dbebe00e9f0)
+![error_MSE.png](https://github.com/Oskop/ML-House-Price-Prediction/blob/0b5703836f30fcdc50be245a1f88ea350e44cf39/error_MSE.png)
 
 Gambar 4. Garfik nilai error data latih dan data uji
 
