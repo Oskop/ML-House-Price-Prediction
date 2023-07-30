@@ -64,6 +64,31 @@ Data yang digunakan dalam proyek ini adalah [**Dataset Prediksi Harga Rumah**](h
 
 Terdapat beberapa tahapan dalam memahami dataset tersebut, yaitu:
 
+1. Periksa tipe data
+
+    Untuk memahami tipe data apa saja yang terdapat pada dataset dapat dilakukan dengan menggunakan fungsi pandas `Dataframe.info()`. Berikut adalah hasil dari pemanggilan fungsi tersebut terhadap dataset yang digunakan.
+
+    RangeIndex: 545 entries, 0 to 544
+    Data columns (total 13 columns):
+    | idx | Column           | Non-Null Count | Dtype  |
+    | --- | ------           | -------------- | -----  |
+    | 0   | price            | 545 non-null   | int64  |
+    | 1   | area             | 545 non-null   | int64  |
+    | 2   | bedrooms         | 545 non-null   | int64  |
+    | 3   | bathrooms        | 545 non-null   | int64  |
+    | 4   | stories          | 545 non-null   | int64  |
+    | 5   | mainroad         | 545 non-null   | object |
+    | 6   | guestroom        | 545 non-null   | object |
+    | 7   | basement         | 545 non-null   | object |
+    | 8   | hotwaterheating  | 545 non-null   | object |
+    | 9   | airconditioning  | 545 non-null   | object |
+    | 10  | parking          | 545 non-null   | int64  |
+    | 11  | prefarea         | 545 non-null   | object |
+    | 12  | furnishingstatus | 545 non-null   | object |
+    dtypes: int64(6), object(7)
+    memory usage: 55.5+ KB
+
+
 1. Periksa duplikasi
 
     Duplikasi pada dataset dapat mempengaruhi hasil prediksi harga rumah menjadi buruk. Oleh karena hal tersebut, dilakukan pengecekan duplikasi data.
@@ -80,7 +105,25 @@ Terdapat beberapa tahapan dalam memahami dataset tersebut, yaitu:
 
     _Missing value_ pada fitur-fitur dataset dapat membuat hasil prediksi menjadi buruk.
 
-    Seletah dilakukan pengecekan _missing value_, tidak ada fitur yang mengalami hal tersebut.
+    Seletah dilakukan pengecekan _missing value_ dengan menggunakan fungsi `Dataframe.isnull().sum()`
+
+    | Fitur            | Jumlah |
+    | ---------------- | ------ |
+    | price            | 0      |
+    | area             | 0      |
+    | bedrooms         | 0      |
+    | bathrooms        | 0      |
+    | stories          | 0      |
+    | mainroad         | 0      |
+    | guestroom        | 0      |
+    | basement         | 0      |
+    | hotwaterheating  | 0      |
+    | airconditioning  | 0      |
+    | parking          | 0      |
+    | prefarea         | 0      |
+    | furnishingstatus | 0      |
+
+    tidak ada fitur yang mengalami hal tersebut.
     
     karena tidak ada _missing value_, maka jumlah data tetap 545.
 
@@ -102,7 +145,7 @@ Terdapat beberapa tahapan dalam memahami dataset tersebut, yaitu:
     
     Gambar 2. Matriks korelasi pada fitur numerik (semua fitur)
 
-    Berdasarkan gambar 2 di atas, dari hasil analisis, fitur ``hotwaterheating``, ``guestroom``, dan ``basement`` memiliki korelasi paling kecil karena skornya mendekati angka 0. Koefisien korelasi berkisar antara -1 dan +1. Ia mengukur kekuatan hubungan antara dua variabel serta arahnya (positif atau negatif). Mengenai kekuatan hubungan antar variabel, semakin dekat nilainya ke 1 atau -1, korelasinya semakin kuat. Sedangkan, semakin dekat nilainya ke 0, korelasinya semakin lemah. Selanjutnya fitur fitur ``hotwaterheating``, ``guestroom``, dan ``basement`` di-*drop*. Maka sekarang fitur yang tersisa adalah `price`, `area`, `bedrooms`, `bathrooms`, `stories`, `mainroad`, `airconditioning`, `parking`, `prefarea` dan `furnishingstatus`. 
+    Berdasarkan gambar 2 di atas, dari hasil analisis, fitur ``hotwaterheating``, ``guestroom``, dan ``basement`` memiliki korelasi paling kecil karena skornya mendekati angka 0. Koefisien korelasi berkisar antara -1 dan +1. Ia mengukur kekuatan hubungan antara dua variabel serta arahnya (positif atau negatif). Mengenai kekuatan hubungan antar variabel, semakin dekat nilainya ke 1 atau -1, korelasinya semakin kuat. Sedangkan, semakin dekat nilainya ke 0, korelasinya semakin lemah. Dikarenakan fitur yang memiliki nilai dibawah 0.3 bagi penulis dianggap tidak terlalu mempengaruhi hasil prediksi, maka fitur ``hotwaterheating``, ``guestroom``, dan ``basement`` di-*drop*. Maka sekarang fitur yang tersisa adalah `price`, `area`, `bedrooms`, `bathrooms`, `stories`, `mainroad`, `airconditioning`, `parking`, `prefarea` dan `furnishingstatus`. 
 
 ## Data Preparation
 Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
@@ -111,7 +154,7 @@ Berikut persiapan data yang dilakukan yaitu:
 
 1. Encoding Fitur Kategori
 
-    Setelah melakukan analisis, tersisa beberapa fitur kategorikal dan numerik. fitur kategorikal perlu diubah ke fitur numerik agar model dapat memperlakukan setiap kategori secara terpisah dan tidak memberikan nilai peringkat atau urutan yang tidak relevan. Dengan cara ini, kita dapat menggunakan data kategori dalam model *machine learning* atau analisis data dengan lebih efektif.
+    Setelah melakukan analisis, tersisa beberapa fitur kategori dan numerik. fitur kategori perlu diubah ke fitur numerik agar model dapat memperlakukan setiap kategori secara terpisah dan tidak memberikan nilai peringkat atau urutan yang tidak relevan. Dengan cara ini, kita dapat menggunakan data kategori dalam model *machine learning* atau analisis data dengan lebih efektif.
 
     Terdapat tipe data kategori atau bukan numerik pada fitur mainroad, guestroom, basement, hotwaterheating, airconditioning, prefarea dan furnishingstatus. Dikarenakan model hanya dapat memproses data numerik, maka perlu pengubahan bentuk data dari fitur-fitur tersebut ke dalam bentuk numerik.
 
@@ -180,7 +223,7 @@ Pada tahap *modeling*, digunakan beberapa algoritma klasifikasi untuk memprediks
 
     Berikut adalah beberapa kelebihan dari Random Forest Regression:
 
-    1. Akurasi yang Tinggi: Random Forest Regression sering memberikan hasil yang sangat akurat dalam klasifikasi data. Hal ini disebabkan oleh fakta bahwa algoritma ini menggabungkan prediksi dari banyak pohon keputusan, sehingga dapat mengurangi overfitting dan mengatasi bias yang ada dalam setiap pohon individu.
+    1. Akurasi yang Tinggi: Random Forest Regression sering memberikan hasil yang sangat akurat dalam klasifikasi data. Hal ini disebabkan oleh fakta bahwa algoritma ini menggabungkan prediksi dari banyak pohon keputusan, sehingga dapat mengurangi _overfitting_ dan mengatasi bias yang ada dalam setiap pohon individu.
 
     2. Toleransi terhadap Fitur Irrelevan: Algoritma ini mampu menangani dataset dengan fitur yang tidak relevan atau tidak penting. Saat membangun setiap pohon keputusan, hanya sebagian kecil dari fitur yang digunakan secara acak untuk membatasi pengaruh fitur yang kurang penting terhadap prediksi.
 
@@ -194,14 +237,14 @@ Pada tahap *modeling*, digunakan beberapa algoritma klasifikasi untuk memprediks
 
     2. Kompleksitas Model: Random Forest Regression membangun banyak pohon keputusan, yang dapat menyebabkan kompleksitas model yang tinggi. Hal ini dapat menyebabkan waktu pelatihan yang lama, terutama untuk dataset yang besar, serta memerlukan sumber daya komputasi yang cukup tinggi.
 
-    3. Overfitting pada Data dengan Fitur Lebih Banyak: Jika dataset memiliki jumlah fitur yang sangat besar dibandingkan dengan jumlah sampel, Random Forest Regression dapat mengalami overfitting. Dalam kasus ini, algoritma cenderung terlalu menyesuaikan diri dengan data pelatihan dan kinerjanya pada data yang tidak dikenal dapat menurun.
+    3. _Overfitting_ pada Data dengan Fitur Lebih Banyak: Jika dataset memiliki jumlah fitur yang sangat besar dibandingkan dengan jumlah sampel, Random Forest Regression dapat mengalami _overfitting_. Dalam kasus ini, algoritma cenderung terlalu menyesuaikan diri dengan data pelatihan dan kinerjanya pada data yang tidak dikenal dapat menurun.
 
     4. Pengaturan Parameter yang Penting: Random Forest Regression memiliki beberapa parameter yang perlu dikonfigurasi dengan benar, seperti jumlah pohon dalam ensemble dan kedalaman maksimum setiap pohon. Pengaturan parameter yang tidak tepat dapat mempengaruhi kinerja model secara keseluruhan.
 
     Parameter yang digunakan :
     
     - `n_estimators`: Parameter ini menentukan jumlah pohon keputusan yang akan dibangun dalam model Random Forest. Semakin banyak pohon yang digunakan, semakin kompleks model dan waktu pelatihannya akan meningkat. Untuk proyek ini, model ini menggunakan nilai 50. Artinya, Random Forest Regression akan menggunakan 50 pohon keputusan dalam menghasilkan prediksi.
-    - `max_depth`: Parameter ini menentukan kedalaman maksimum dari setiap pohon dalam model. Kedalaman yang lebih dalam dapat menghasilkan model yang lebih kompleks, tetapi juga dapat menyebabkan overfitting. Jika tidak ditentukan, pohon tidak memiliki batasan kedalaman dan akan terus membagi sampai semua node menjadi murni atau sampai jumlah sampel minimum untuk split tidak terpenuhi. Untuk proyek ini, model tidak menentukan parameter `max_depth`, untuk itu model akan menggunakan nilai 16.
+    - `max_depth`: Parameter ini menentukan kedalaman maksimum dari setiap pohon dalam model. Kedalaman yang lebih dalam dapat menghasilkan model yang lebih kompleks, tetapi juga dapat menyebabkan _overfitting_. Jika tidak ditentukan, pohon tidak memiliki batasan kedalaman dan akan terus membagi sampai semua node menjadi murni atau sampai jumlah sampel minimum untuk split tidak terpenuhi. Untuk proyek ini, model tidak menentukan parameter `max_depth`, untuk itu model akan menggunakan nilai 16.
     - `random_state`: mengontrol pengacakan bootstrap sampel yang digunakan saat membangun pohon-pohon keputusan (jika `bootstrap`=True) dan pengambilan sampel fitur untuk dipertimbangkan saat mencari pemisahan terbaik di setiap node (jika `max_features` < `n_features`). Untuk model ini menggunakan nilai 55.
     - `n_jobs`: jumlah tugas yang dijalankan secara paralel. Jika nilai `None` sama dengan 1 tugas dalam satu waktu, bila -1 sama dengan semua tugas dijalankan secara paralel. Untuk model ini menggunalan nilai -1.
 
@@ -265,13 +308,16 @@ Berdasarkan gambar di atas, dapat diambil beberapa kesimpulan:
 
 1. Model KNN memiliki nilai eror yang cukup tinggi pada data uji dan memiliki nilai eror lebih rendah pada data latih. Dalam hal ini, nilai MSE model pada data latihan adalah 1,1144, sedangkan pada data uji adalah 1,572. Hal ini menunjukkan bahwa model KNN belum berhasil menghasilkan prediksi yang akurat pada data baru yang belum pernah dilihat sebelumnya.
 
-2. Model Random Forest memiliki nilai eror yang sangat tinggi pada data uji dengan nilai 1,6958 dan nilai eror yang sangat rendah dengan nilai 0,2295, yang menunjukkan bahwa model ini mengalami overfitting. Hal ini menunjukkan bahwa model Random Forest tidak berhasil menghasilkan prediksi yang akurat pada data baru yang belum pernah dilihat sebelumnya.
+2. Model Random Forest memiliki nilai eror yang sangat tinggi pada data uji dengan nilai 1,6958 dan nilai eror yang sangat rendah dengan nilai 0,2295, yang menunjukkan bahwa model ini mengalami _overfitting_. Hal ini menunjukkan bahwa model Random Forest tidak berhasil menghasilkan prediksi yang akurat pada data baru yang belum pernah dilihat sebelumnya.
 
-3. Model Linear Regression menunjukkan nilai eror yang tinggi pada data uji (1,1696) dan data uji (1,3803). Hal ini menunjukkan bahwa model Linear Regression belum mampu memberikan prediksi yang akurat pada data baru yang belum pernah dilatih sebelumnya, namun karena selisih antara nilai error data uji dan data latihnya paling rendah, maka terdapat potensi untuk menghasilkan model yang tida overfitting.
+3. Model Linear Regression menunjukkan nilai eror yang tinggi pada data uji (1,1696) dan data uji (1,3803). Hal ini menunjukkan bahwa model Linear Regression belum mampu memberikan prediksi yang akurat pada data baru yang belum pernah dilatih sebelumnya, namun karena selisih antara nilai error data uji dan data latihnya paling rendah, maka terdapat potensi untuk menghasilkan model yang tida _overfitting_.
 
 ## Kesimpulan
 
-Dalam kesimpulan, semua model yang dievaluasi dalam tabel tersebut memiliki nilai eror yang relatif tinggi. Namun, model Random Forest memiliki nilai eror terendah pada data latihan, sekaligus nilai eror yang paling tinggi pada data uji. Pilihan model terbaik tergantung pada konteks dan kebutuhan spesifik dari masalah yang dihadapi. Sehingga model terbaik yang dipilih yaitu model *Linear Regression* karena dapat menunjukan hasil yang tidak mengandung banyak selisih nilai eror pada evaluasi data uji dan data latih.
+Prediksi harga rumah menjadi hal yang dibutuhkan apabila seseorang yang belum berkeluarga ingin membeli sebuah rumah di masa depan sehingga mereka mampu mempersiapkan finansial mereka. Prediksi harga rumah juga menjadi bagian yang penting dalam bisnis jual rumah untuk mendapatkan harga rumah yang sesuai dengan harga pasar sehingga tidak akan terlalu murah (rugi) atau terlalu mahal (calon pelanggan enggan membeli). Oleh karena itu dibuatlah model *machine learning* untuk memprediksi harga rumah dengan menggunakan dataset [**Dataset Prediksi Harga Rumah**](https://www.kaggle.com/datasets/harishkumardatalab/housing-price-prediction) dengan 12 fitur yang tersedia yang kemudian setelah melalu EDA akan diseleksi fitur yang paling mempengaruhi saja. Kemudian dilanjut dengan proses _data preparation_ supaya model dapat memproses dataset yang selanjutnya akan dilakukan pelatihan pada 3 model yang penulis ajukan (*K-NN Regression*, *Random Forest Regression*, dan *Linear Regression*).
+Setelah proses pelatihan model, semua model yang dievaluasi dalam grafik tersebut memiliki nilai eror yang relatif tinggi. Namun, model Random Forest memiliki nilai eror terendah pada data latihan, sekaligus nilai eror yang paling tinggi pada data uji. Pilihan model terbaik tergantung pada konteks dan kebutuhan spesifik dari masalah yang dihadapi. Sehingga model terbaik yang dipilih yaitu model *Linear Regression* karena dapat menunjukan hasil yang tidak mengandung banyak selisih nilai eror pada evaluasi data uji dan data latih.
+
+Agar model dapat memberikan prediksi dengan nilai eror yang lebih rendah, maka penulis menyarankan untuk menambah jumlah data pada dataset supaya mengurangi kemungkinan terjadinya _overfitting_ dan melakukan hyperparameter tunning pada model yang telah penulis ajukan. Selain hal tersebut, bisa juga dilakukan menambah jumlah model yang dibandingkan supaya dapat menemukan model yang paling kecil menghasilkan nilai eror.
 
 ## Referensi
 
