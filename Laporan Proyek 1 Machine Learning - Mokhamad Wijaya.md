@@ -154,7 +154,7 @@ Berikut persiapan data yang dilakukan yaitu:
 
 1. Encoding Fitur Kategori
 
-    Setelah melakukan analisis, tersisa beberapa fitur kategori dan numerik. fitur kategori perlu diubah ke fitur numerik agar model dapat memperlakukan setiap kategori secara terpisah dan tidak memberikan nilai peringkat atau urutan yang tidak relevan. Dengan cara ini, kita dapat menggunakan data kategori dalam model *machine learning* atau analisis data dengan lebih efektif.
+    Setelah melakukan analisis, tersisa beberapa fitur kategori dan numerik. fitur kategori perlu diubah ke fitur numerik agar model dapat memperlakukan setiap kategori secara terpisah dan tidak memberikan nilai peringkat atau urutan yang tidak relevan. Dengan cara ini akan dapat menggunakan data kategori dalam model *machine learning* atau analisis data dengan lebih efektif.
 
     Terdapat tipe data kategori atau bukan numerik pada fitur mainroad, guestroom, basement, hotwaterheating, airconditioning, prefarea dan furnishingstatus. Dikarenakan model hanya dapat memproses data numerik, maka perlu pengubahan bentuk data dari fitur-fitur tersebut ke dalam bentuk numerik.
 
@@ -172,11 +172,11 @@ Berikut persiapan data yang dilakukan yaitu:
     
     Rasio pembagian data latih dan data uji yaitu 80:10 karena dataset memiliki sedikit data. Total data sebelumnya sebesar 545. Setelah dibagi dengan rasio 80:10, maka total data latih sebesar 436 dan data uji sebesar 109.
 
-    Dengan membagi data menjadi subset pelatihan dan pengujian, kita dapat menghindari penilaian yang terlalu optimis dan mendapatkan perkiraan yang lebih realistis tentang seberapa baik model akan berperforma pada data yang tidak pernah dilihat sebelumnya.
+    Dengan membagi data menjadi subset pelatihan dan pengujian, maka dapat menghindari penilaian yang terlalu optimis dan mendapatkan perkiraan yang lebih realistis tentang seberapa baik model akan berperforma pada data yang tidak pernah dilihat sebelumnya.
 
 3. Standarisasi
 
-    Standardisasi adalah teknik transformasi yang paling umum digunakan dalam tahap persiapan pemodelan. Untuk fitur numerik, kita tidak akan melakukan transformasi dengan one-hot-encoding seperti pada fitur kategori. Kita akan menggunakan teknik StandarScaler dari library Scikitlearn.
+    Standardisasi adalah teknik transformasi yang paling umum digunakan dalam tahap persiapan pemodelan. Untuk fitur numerik, tidak harus melakukan transformasi dengan one-hot-encoding seperti pada fitur kategori. Cara lain yang tersedia yaitu dengan menggunakan teknik StandarScaler dari library Scikitlearn.
  
     StandardScaler adalah salah satu teknik standarisasi yang umum digunakan dalam machine learning. Teknik ini berguna untuk mengubah distribusi data menjadi memiliki mean (rerata) 0 dan standar deviasi (simpangan baku) 1. Dengan menggunakan StandardScaler, setiap fitur akan diperlakukan secara independen dan diskala ulang sehingga memiliki skala yang seragam.
 
