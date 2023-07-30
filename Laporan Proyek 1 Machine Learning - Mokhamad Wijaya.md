@@ -134,14 +134,16 @@ Terdapat beberapa tahapan dalam memahami dataset tersebut, yaitu:
     
 
     Untuk evaluasi skor korelasi antar fitur khususnya fitur numerik, peneliti menggunakan fungsi `corr()` lalu skor yang didapat akan ditampilkan dalam diagram heatmap agar mudah dibaca.
+
     
-    ![correlations_matrix_before.png](https://github.com/Oskop/ML-House-Price-Prediction/blob/0b5703836f30fcdc50be245a1f88ea350e44cf39/correlations_matrix_before.png)
-    
+    ![correlations_matrix_before](https://github.com/Oskop/ML-House-Price-Prediction/assets/40781072/c2c3dfb8-bac8-486e-a449-29e75cdfc7f1)
+
     Gambar 1. Matriks korelasi pada fitur numerik
 
     Dikarenakan tidak semua fitur berupa numerik, penulis melakukan data encoding pada fitur-fitur kategorial dan didapat diagram heatmap untuk semua fitur.
 
-    ![correlations_matrix_setelah.png](https://github.com/Oskop/ML-House-Price-Prediction/blob/0b5703836f30fcdc50be245a1f88ea350e44cf39/correlations_matrix_setelah.png)
+
+    ![correlations_matrix_setelah](https://github.com/Oskop/ML-House-Price-Prediction/assets/40781072/2adfc4a3-9767-4a95-83b1-a242e059748b)
     
     Gambar 2. Matriks korelasi pada fitur numerik (semua fitur)
 
@@ -284,7 +286,8 @@ Untuk menghitung nilai eror, langkah pertama adalah membandingkan setiap prediks
 
 Berikut rumus matematika untuk menghitung akurasi:
 
-![rumus_mean_squared_error_mse.jpeg](https://github.com/Oskop/ML-House-Price-Prediction/blob/0b5703836f30fcdc50be245a1f88ea350e44cf39/rumus_mean_squared_error_mse.jpeg)
+
+![rumus_mean_squared_error_mse](https://github.com/Oskop/ML-House-Price-Prediction/assets/40781072/da730cfd-0b10-4554-a1eb-8bf78c55bc58)
     
 Gambar 3. Rumus Mean Squared Error
 
@@ -300,7 +303,8 @@ Pada proyek ini, nilai eror dari setiap model akan digunakan untuk membandingkan
 
 Hasil dari evaluasi model menggunakan metrik error sebagai berikut:
 
-![error_MSE.png](https://github.com/Oskop/ML-House-Price-Prediction/blob/0b5703836f30fcdc50be245a1f88ea350e44cf39/error_MSE.png)
+
+![error_MSE](https://github.com/Oskop/ML-House-Price-Prediction/assets/40781072/543ea88e-2a22-4012-80f4-ea33329787d9)
 
 Gambar 4. Garfik nilai error data latih dan data uji
 
