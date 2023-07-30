@@ -143,8 +143,9 @@ Terdapat beberapa tahapan dalam memahami dataset tersebut, yaitu:
     Dikarenakan tidak semua fitur berupa numerik, penulis melakukan data encoding pada fitur-fitur kategorial dan didapat diagram heatmap untuk semua fitur.
 
 
-    ![correlations_matrix_setelah](https://github.com/Oskop/ML-House-Price-Prediction/assets/40781072/2adfc4a3-9767-4a95-83b1-a242e059748b)
-    
+    ![correlations_matrix_setelah_rev1](https://github.com/Oskop/ML-House-Price-Prediction/assets/40781072/a4c52eee-f33d-4c67-9853-3f16f6e06959)
+
+        
     Gambar 2. Matriks korelasi pada fitur numerik (semua fitur)
 
     Berdasarkan gambar 2 di atas, dari hasil analisis, fitur ``hotwaterheating``, ``guestroom``, dan ``basement`` memiliki korelasi paling kecil karena skornya mendekati angka 0. Koefisien korelasi berkisar antara -1 dan +1. Ia mengukur kekuatan hubungan antara dua variabel serta arahnya (positif atau negatif). Mengenai kekuatan hubungan antar variabel, semakin dekat nilainya ke 1 atau -1, korelasinya semakin kuat. Sedangkan, semakin dekat nilainya ke 0, korelasinya semakin lemah. Dikarenakan fitur yang memiliki nilai dibawah 0.3 bagi penulis dianggap tidak terlalu mempengaruhi hasil prediksi, maka fitur ``hotwaterheating``, ``guestroom``, dan ``basement`` di-*drop*. Maka sekarang fitur yang tersisa adalah `price`, `area`, `bedrooms`, `bathrooms`, `stories`, `mainroad`, `airconditioning`, `parking`, `prefarea` dan `furnishingstatus`. 
